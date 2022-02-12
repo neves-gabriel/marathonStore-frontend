@@ -4,12 +4,43 @@ import { useState, useEffect } from "react";
 export const AuthContext = React.createContext({});
 
 export const AuthProvider = ({ children }) => {
+  const [sideBarTrigger, setSideBarTrigger] = useState(null);
+  const [userData, setUserData] = useState(null);
+  const [showLogIn, setShowLogIn] = useState(true);
+  const [showSignUp, setShowSignUp] = useState(false);
 
-    const [sideBarTrigger, setSideBarTrigger] = useState(null);
+  useEffect(() => {
+    if (
+      localStorage.getItem("token") !== "" &&
+      localStorage.getItem("token") !== null
+    ) {
+      setUserData({
+        name: localStorage.getItem("name"),
+        email: localStorage.getItem("email"),
+        token: localStorage.getItem("token"),
+      });
+      setShowLogIn(false);
+      setShowSignUp(false);
+      return;
+    } else {
+      setShowLogIn(true);
+    }
+  }, []);
 
-    return (
-        <AuthContext.Provider value={{ sideBarTrigger, setSideBarTrigger }}>
-            {children}
-        </ AuthContext.Provider>
-    )
-}
+  return (
+    <AuthContext.Provider
+      value={{
+        sideBarTrigger,
+        setSideBarTrigger,
+        userData,
+        setUserData,
+        showLogIn,
+        setShowLogIn,
+        showSignUp,
+        setShowSignUp,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
