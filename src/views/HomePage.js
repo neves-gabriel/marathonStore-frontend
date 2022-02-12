@@ -34,8 +34,8 @@ export default function HomePage() {
 const Container = styled.div`
     width: 100%;
     min-height: 100vh;
-    background-color: #E5E5E5;
-    filter: brightness(${props => props.triggered ? "0.3" : "1"});
+    background-color: #FFF;
+    filter: brightness(${props => props.triggered ? "0.2" : "1"});
 
     display: flex;
     flex-direction: column;

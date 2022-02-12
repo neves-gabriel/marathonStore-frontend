@@ -11,14 +11,12 @@ export default function SectionTitle( {title} ) {
 }
 // ::::::::::Styled-Components::::::::::
 const Container = styled.div`
-    width: 100%;
+    width: 90%;
     margin-top: 40px;
     margin-bottom: 10px;
 
     h1{
-        font-family: 'Righteous', cursive;
         font-size: 26px;
         color: #333333;
-        margin-left: 10px;
     }
 `

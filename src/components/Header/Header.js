@@ -17,7 +17,7 @@ export default function Header() {
                 <HeaderIcon />
                 <h1>Marathôn</h1>
             </LogoName>
-            <IconContext.Provider value={{ color: "white", size: "36px" }}>
+            <IconContext.Provider value={{ color: "#fff", size: "36px" }}>
                 <GoThreeBars onClick={() => setSideBarTrigger(true)}/>
             </IconContext.Provider>
         </Container>
@@ -37,9 +37,10 @@ const Container = styled.div`
     justify-content: space-between;
 
     h1{
+        font-family: 'Montserrat', sans-serif;
         font-size: 22px;
         text-decoration: overline;
-        font-weight: 700;
+        font-weight: 400;
         color: #E5E5E5;
         margin-left: 10px;
     }
