@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { AuthContext } from "../../providers/auth";
 
 import { IconContext } from "react-icons";
 import { GoThreeBars } from "react-icons/go";
@@ -8,6 +9,8 @@ import HeaderIcon from "./HeaderIcon";
 
 export default function Header() {
 
+    const { sideBarTrigger, setSideBarTrigger } = React.useContext(AuthContext);
+
     return (
         <Container>
             <LogoName>
@@ -15,7 +18,7 @@ export default function Header() {
                 <h1>Marathôn</h1>
             </LogoName>
             <IconContext.Provider value={{ color: "white", size: "36px" }}>
-                <GoThreeBars />
+                <GoThreeBars onClick={() => setSideBarTrigger(true)}/>
             </IconContext.Provider>
         </Container>
     );
@@ -27,7 +30,6 @@ const Container = styled.div`
     background-color: #5381f1;
     padding: 20px;
     margin-bottom: 10px;
-    font-family: 'Cinzel', serif;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     
     display: flex;
@@ -35,7 +37,8 @@ const Container = styled.div`
     justify-content: space-between;
 
     h1{
-        font-size: 20px;
+        font-size: 22px;
+        text-decoration: overline;
         font-weight: 700;
         color: #E5E5E5;
         margin-left: 10px;

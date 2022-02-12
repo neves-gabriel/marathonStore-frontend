@@ -16,9 +16,8 @@ const Container = styled.div`
     margin-bottom: 10px;
 
     h1{
-        font-family: 'Cinzel', serif;
+        font-family: 'Righteous', cursive;
         font-size: 26px;
-        font-weight: 700;
         color: #333333;
         margin-left: 10px;
     }
