@@ -24,14 +24,14 @@ export default function SideBar() {
 
   return (
     <Container>
-      {userData ? (
-        <IconContext.Provider value={{ color: "#FFFFFF", size: "46px" }}>
-          <IconBox>
-            <FaSignOutAlt onClick={() => logOut()} />
-          </IconBox>
-        </IconContext.Provider>
-      ) : null}
       <OutsideClickHandler onOutsideClick={() => setSideBarTrigger(false)}>
+        {userData ? (
+          <IconContext.Provider value={{ color: "#FFFFFF", size: "46px" }}>
+            <IconBox>
+              <FaSignOutAlt onClick={() => logOut()} />
+            </IconBox>
+          </IconContext.Provider>
+        ) : null}
         <Content>
           <SideHeader>
             Olá, {userData ? userData.name : "faça seu login!"}
