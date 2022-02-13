@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/auth";
 import { useContext } from "react";
 import { IconContext } from "react-icons";
-import { FaRegWindowClose, FaSignOutAlt } from "react-icons/fa";
+import { FaSignOutAlt } from "react-icons/fa";
+import OutsideClickHandler from "react-outside-click-handler";
 import LogIn from "./LogIn.js";
 import SignUp from "./SignUp.js";
 
@@ -23,9 +24,6 @@ export default function SideBar() {
 
   return (
     <Container>
-      <IconContext.Provider value={{ color: "#FFFFFF", size: "46px" }}>
-        <FaRegWindowClose onClick={() => setSideBarTrigger(false)} />
-      </IconContext.Provider>
       {userData ? (
         <IconContext.Provider value={{ color: "#FFFFFF", size: "46px" }}>
           <IconBox>
@@ -33,21 +31,63 @@ export default function SideBar() {
           </IconBox>
         </IconContext.Provider>
       ) : null}
-      <Content>
-        <SideHeader>
-          Olá, {userData ? userData.name : "faça seu login!"}
-        </SideHeader>
-        {showLogIn ? <LogIn /> : null}
-        {showSignUp ? <SignUp /> : null}
-        <SideButton>
-          <h1>Todas as categorias</h1>
-        </SideButton>
-        <SideButton onClick={() => navigate(`/categorias/futebol`)}>Futebol</SideButton>
-        <SideButton onClick={() => navigate(`/categorias/automobilismo`)}>Automobilismo</SideButton>
-        <SideButton>Handebol</SideButton>
-        <SideButton>Basquete</SideButton>
-        <SideButton>Ciclismo</SideButton>
-      </Content>
+      <OutsideClickHandler onOutsideClick={() => setSideBarTrigger(false)}>
+        <Content>
+          <SideHeader>
+            Olá, {userData ? userData.name : "faça seu login!"}
+          </SideHeader>
+          {showLogIn ? <LogIn /> : null}
+          {showSignUp ? <SignUp /> : null}
+          <SideButton
+            onClick={() => {
+              navigate(`/`);
+              setSideBarTrigger(false);
+            }}
+          >
+            <h1>Todas as categorias</h1>
+          </SideButton>
+          <SideButton
+            onClick={() => {
+              navigate(`/categorias/futebol`);
+              setSideBarTrigger(false);
+            }}
+          >
+            Futebol
+          </SideButton>
+          <SideButton
+            onClick={() => {
+              navigate(`/categorias/automobilismo`);
+              setSideBarTrigger(false);
+            }}
+          >
+            Automobilismo
+          </SideButton>
+          <SideButton
+            onClick={() => {
+              navigate(`/categorias/handebol`);
+              setSideBarTrigger(false);
+            }}
+          >
+            Handebol
+          </SideButton>
+          <SideButton
+            onClick={() => {
+              navigate(`/categorias/basquete`);
+              setSideBarTrigger(false);
+            }}
+          >
+            Basquete
+          </SideButton>
+          <SideButton
+            onClick={() => {
+              navigate(`/categorias/ciclismo`);
+              setSideBarTrigger(false);
+            }}
+          >
+            Ciclismo
+          </SideButton>
+        </Content>
+      </OutsideClickHandler>
     </Container>
   );
 }
@@ -112,6 +152,7 @@ const SideButton = styled.div`
   h1 {
     font-size: 25px;
   }
+  cursor: pointer;
 `;
 const IconBox = styled.div`
   position: absolute;

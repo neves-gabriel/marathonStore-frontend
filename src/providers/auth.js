@@ -5,6 +5,7 @@ export const AuthContext = React.createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [sideBarTrigger, setSideBarTrigger] = useState(null);
+  const [cartTrigger, setCartTrigger] = useState(null);
   const [userData, setUserData] = useState(null);
   const [showLogIn, setShowLogIn] = useState(true);
   const [showSignUp, setShowSignUp] = useState(false);
@@ -32,6 +33,8 @@ export const AuthProvider = ({ children }) => {
       value={{
         sideBarTrigger,
         setSideBarTrigger,
+        cartTrigger,
+        setCartTrigger,
         userData,
         setUserData,
         showLogIn,

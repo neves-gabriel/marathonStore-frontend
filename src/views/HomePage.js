@@ -3,51 +3,41 @@ import styled from "styled-components";
 import { AuthContext } from "../providers/auth";
 
 import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 import SectionTitle from "../components/PageContent/SectionTitle";
 import ProductSection from "../components/PageContent/ProductSection";
 import SideBar from "../components/PageContent/SideBar";
-import CartIcon from "../components/PageContent/CartIcon";
+import CartScreen from "../components/PageContent/CartScreen";
 
 export default function HomePage() {
+  const { sideBarTrigger } = React.useContext(AuthContext);
+  const { cartTrigger } = React.useContext(AuthContext);
 
-    const { sideBarTrigger, setSideBarTrigger } = React.useContext(AuthContext);
-
-    return (
-        <>
-            <Container triggered={sideBarTrigger}>
-                <Header />
-                <SectionTitle title={"Destaques"} />
-                <ProductSection />
-                <SectionTitle title={"Lançamentos"} />
-                <ProductSection />
-                <Footer>
-                    <CartIcon />
-                </Footer>
-            </Container>
-            {sideBarTrigger === true && <SideBar />}
-        </>
-    );
+  return (
+    <>
+      <Container triggered={sideBarTrigger || cartTrigger}>
+        <Header />
+        <SectionTitle title={"Destaques"} />
+        <ProductSection />
+        <SectionTitle title={"Lançamentos"} />
+        <ProductSection />
+        <Footer />
+      </Container>
+      {sideBarTrigger === true && <SideBar />}
+      {cartTrigger === true && <CartScreen />}
+    </>
+  );
 }
 // ::::::::::Styled-Components::::::::::
 const Container = styled.div`
-    width: 100%;
-    min-height: 100vh;
-    background-color: #FFF;
-    filter: brightness(${props => props.triggered ? "0.2" : "1"});
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fff;
+  filter: brightness(${(props) => (props.triggered ? "0.2" : "1")});
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: fixed;
-    z-index: 2;
-`
-const Footer = styled.div`
-    width: 100%;
-    padding: 20px;
-    position: fixed;
-    bottom: 0;
-
-
-    display: flex;
-    justify-content: flex-end;
-`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  z-index: 2;
+`;
