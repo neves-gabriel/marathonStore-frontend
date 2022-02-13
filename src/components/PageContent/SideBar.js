@@ -42,8 +42,8 @@ export default function SideBar() {
         <SideButton>
           <h1>Todas as categorias</h1>
         </SideButton>
-        <SideButton>Futebol</SideButton>
-        <SideButton>Automobilismo</SideButton>
+        <SideButton onClick={() => navigate(`/categorias/futebol`)}>Futebol</SideButton>
+        <SideButton onClick={() => navigate(`/categorias/automobilismo`)}>Automobilismo</SideButton>
         <SideButton>Handebol</SideButton>
         <SideButton>Basquete</SideButton>
         <SideButton>Ciclismo</SideButton>

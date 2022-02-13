@@ -12,8 +12,6 @@ export default function HomePage() {
 
     const { sideBarTrigger, setSideBarTrigger } = React.useContext(AuthContext);
 
-    console.log(sideBarTrigger);
-
     return (
         <>
             <Container triggered={sideBarTrigger}>

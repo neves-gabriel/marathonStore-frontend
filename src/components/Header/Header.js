@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/auth";
 
 import { IconContext } from "react-icons";
@@ -10,10 +11,11 @@ import HeaderIcon from "./HeaderIcon";
 export default function Header() {
 
     const { sideBarTrigger, setSideBarTrigger } = React.useContext(AuthContext);
+    const navigate = useNavigate();
 
     return (
         <Container>
-            <LogoName>
+            <LogoName onClick={() => navigate("/")}>
                 <HeaderIcon />
                 <h1>Marathôn</h1>
             </LogoName>

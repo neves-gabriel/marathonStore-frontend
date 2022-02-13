@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function HeaderIcon() {
 
     return(
-        <Icon src="./img/marathon-icon.png"/>
+        <Icon src="/img/marathon-icon.png"/>
     );
 }
 // ::::::::::Styled-Components::::::::::
