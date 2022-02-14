@@ -12,8 +12,8 @@ export default function SectionTitle( {title} ) {
 // ::::::::::Styled-Components::::::::::
 const Container = styled.div`
     width: 90%;
-    margin-top: 40px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 
     h1{
         font-size: 26px;

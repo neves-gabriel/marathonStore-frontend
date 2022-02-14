@@ -8,8 +8,7 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         font-style: normal;
         font-weight: normal;
-        text-decoration: none;
-        
+        text-decoration: none; 
     }
 `
 

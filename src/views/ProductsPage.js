@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { AuthContext } from "../providers/auth";
 import { useContext } from "react";
 import axios from "axios";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 import { IconContext } from "react-icons";
 import { AiOutlinePlusCircle } from "react-icons/ai";
@@ -17,16 +17,17 @@ export default function ProductsPage() {
     const { sideBarTrigger } = React.useContext(AuthContext);
     const { cartTrigger } = React.useContext(AuthContext);
     const { cartInfo, setCartInfo } = React.useContext(AuthContext);
-    const { URL } = useContext(AuthContext);
     const [content, setContent] = useState([]);
+    const location = useLocation();
+    const category = location.pathname.replace("/categorias/", "")
 
     useEffect(() => {
-        const promise = axios.get(URL);
+        const promise = axios.get(`https://marathonstore-backend.herokuapp.com/products/${category}`);
         promise.then((response) => {
             setContent(response.data);
         });
         promise.catch((error) => alert(error));
-    }, [URL]);
+    }, [category]);
 
     return (
         <>

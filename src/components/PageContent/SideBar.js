@@ -50,7 +50,6 @@ export default function SideBar() {
             onClick={() => {
               navigate(`/categorias/futebol`);
               setSideBarTrigger(false);
-              setURL("https://marathonstore-backend.herokuapp.com/products/Futebol");
             }}
           >
             Futebol
@@ -59,7 +58,6 @@ export default function SideBar() {
             onClick={() => {
               navigate(`/categorias/automobilismo`);
               setSideBarTrigger(false);
-              setURL("https://marathonstore-backend.herokuapp.com/products/Automobilismo");
             }}
           >
             Automobilismo
@@ -68,7 +66,6 @@ export default function SideBar() {
             onClick={() => {
               navigate(`/categorias/handebol`);
               setSideBarTrigger(false);
-              setURL("https://marathonstore-backend.herokuapp.com/products/Handebol");
             }}
           >
             Handebol
@@ -77,7 +74,6 @@ export default function SideBar() {
             onClick={() => {
               navigate(`/categorias/basquete`);
               setSideBarTrigger(false);
-              setURL("https://marathonstore-backend.herokuapp.com/products/Basquete");
             }}
           >
             Basquete
@@ -86,7 +82,6 @@ export default function SideBar() {
             onClick={() => {
               navigate(`/categorias/ciclismo`);
               setSideBarTrigger(false);
-              setURL("https://marathonstore-backend.herokuapp.com/products/Ciclismo");
             }}
           >
             Ciclismo

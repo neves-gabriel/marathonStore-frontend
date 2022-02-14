@@ -52,7 +52,7 @@ const Container = styled.div`
     }
 `;
 const LogoName = styled.div`
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 `;
