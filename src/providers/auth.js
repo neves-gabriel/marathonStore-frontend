@@ -11,6 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [showSignUp, setShowSignUp] = useState(false);
   const [URL, setURL] = useState("");
   const [cartInfo, setCartInfo] = useState([]);
+  const [count, setCount] = useState(1);
 
   useEffect(() => {
     if (
@@ -47,6 +48,8 @@ export const AuthProvider = ({ children }) => {
         setURL,
         cartInfo,
         setCartInfo,
+        count,
+        setCount,
       }}
     >
       {children}

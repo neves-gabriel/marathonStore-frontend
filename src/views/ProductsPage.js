@@ -14,49 +14,49 @@ import SideBar from "../components/PageContent/SideBar";
 import CartScreen from "../components/PageContent/CartScreen";
 
 export default function ProductsPage() {
-  const { sideBarTrigger } = React.useContext(AuthContext);
-  const { cartTrigger } = React.useContext(AuthContext);
-  const { cartInfo, setCartInfo } = React.useContext(AuthContext);
-  const { URL } = useContext(AuthContext);
-  const [content, setContent] = useState([]);
+    const { sideBarTrigger } = React.useContext(AuthContext);
+    const { cartTrigger } = React.useContext(AuthContext);
+    const { cartInfo, setCartInfo } = React.useContext(AuthContext);
+    const { URL } = useContext(AuthContext);
+    const [content, setContent] = useState([]);
 
-  useEffect(() => {
-    const promise = axios.get(URL);
-    promise.then((response) => {
-      setContent(response.data);
-    });
-    promise.catch((error) => alert(error));
-  }, [URL]);
-  console.log(cartInfo);
-  return (
-    <>
-      <Container triggered={sideBarTrigger || cartTrigger}>
-        <Header />
-        <ProductScroll>
-          {content.map((items) => (
-            <ProductBox>
-              <IconContext.Provider value={{ color: "#5381f1", size: "32px" }}>
-                <AiOutlinePlusCircle
-                  onClick={() => setCartInfo([...cartInfo, items])}
-                />
-              </IconContext.Provider>
-              <ImgBox>
-                <img src={items.imgURL} />
-              </ImgBox>
-              <ProductInfo>
-                <h1>{items.name}</h1>
-                <p>{items.description}</p>
-                <h2>R${items.price}</h2>
-              </ProductInfo>
-            </ProductBox>
-          ))}
-        </ProductScroll>
-        <Footer />
-      </Container>
-      {sideBarTrigger === true && <SideBar />}
-      {cartTrigger === true && <CartScreen />}
-    </>
-  );
+    useEffect(() => {
+        const promise = axios.get(URL);
+        promise.then((response) => {
+            setContent(response.data);
+        });
+        promise.catch((error) => alert(error));
+    }, [URL]);
+
+    return (
+        <>
+            <Container triggered={sideBarTrigger || cartTrigger}>
+                <Header />
+                <ProductScroll>
+                    {content.map((items) => (
+                        <ProductBox>
+                            <IconContext.Provider value={{ color: "#5381f1", size: "32px" }}>
+                                <AiOutlinePlusCircle
+                                    onClick={() => setCartInfo([...cartInfo, items])}
+                                />
+                            </IconContext.Provider>
+                            <ImgBox>
+                                <img src={items.imgURL} />
+                            </ImgBox>
+                            <ProductInfo>
+                                <h1>{items.name}</h1>
+                                <p>{items.description}</p>
+                                <h2>R${items.price}</h2>
+                            </ProductInfo>
+                        </ProductBox>
+                    ))}
+                </ProductScroll>
+                <Footer />
+            </Container>
+            {sideBarTrigger === true && <SideBar />}
+            {cartTrigger === true && <CartScreen />}
+        </>
+    );
 }
 
 // ::::::::::Styled-Components::::::::::

@@ -9,7 +9,7 @@ export default function Footer() {
 
   return (
     <Container onClick={() => setCartTrigger(true)}>
-      <CartIcon />
+      <CartIcon  />
     </Container>
   );
 }
@@ -17,8 +17,8 @@ export default function Footer() {
 const Container = styled.div`
   width: 100%;
   padding: 20px;
-  position: fixed;
-  margin-top: 610px;
+  position: absolute;
+  margin-top: 400px;
 
   display: flex;
   justify-content: flex-end;

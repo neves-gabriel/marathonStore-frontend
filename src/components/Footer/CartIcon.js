@@ -18,7 +18,7 @@ const Container = styled.div`
   width: 60px;
   height: 60px;
   border-radius: 56px;
-  background-color: #cbcbcb;
+  background-color: #5381f1;
 
   display: flex;
   justify-content: center;

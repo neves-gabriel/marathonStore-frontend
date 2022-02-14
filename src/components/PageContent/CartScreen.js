@@ -4,9 +4,15 @@ import { AuthContext } from "../../providers/auth.js";
 import OutsideClickHandler from "react-outside-click-handler";
 import { useNavigate } from "react-router-dom";
 
+import { IconContext } from "react-icons";
+import { AiOutlinePlusCircle } from "react-icons/ai";
+import { IoMdRemoveCircleOutline } from "react-icons/io";
+
 export default function CartScreen() {
+
   const { setCartTrigger } = React.useContext(AuthContext);
   const { cartInfo, setCartInfo } = React.useContext(AuthContext);
+  const { count, setCount } = React.useContext(AuthContext);
   const navigate = useNavigate();
 
   return (
@@ -18,16 +24,31 @@ export default function CartScreen() {
           </BoxHeader>
           {cartInfo !== [] &&
             cartInfo.map((items) => (
-              <ProductBox>
-                <ImgBox>
-                  <img src={items.imgURL} />
-                </ImgBox>
-                <ProductInfo>
-                  <h1>{items.name}</h1>
-                  <p>{items.description}</p>
-                  <h2>R${items.price}</h2>
-                </ProductInfo>
-              </ProductBox>
+              <>
+                <ProductBox>
+                  <ImgBox>
+                    <img src={items.imgURL} />
+                  </ImgBox>
+                  <ProductInfo>
+                    <h1>{items.name}</h1>
+                    <h2>R${items.price}</h2>
+                  </ProductInfo>
+                </ProductBox>
+                <ButtonLayer>
+                  <IconContext.Provider value={{ color: "#5381f1", size: "32px" }}>
+                    <IoMdRemoveCircleOutline
+                      onClick={() => setCount(count - 1)}
+                    />
+                  </IconContext.Provider>
+                  <h1>{count}</h1>
+                  <IconContext.Provider value={{ color: "#5381f1", size: "32px" }}>
+                    <AiOutlinePlusCircle
+                      onClick={() => setCount(count + 1)}
+                    />
+                  </IconContext.Provider>
+
+                </ButtonLayer>
+              </>
             ))}
           <BoxFooter onClick={() => navigate("/checkout")}>
             <h1>Checkout</h1>
@@ -54,18 +75,12 @@ const CartBox = styled.div`
   height: 500px;
   background-color: #ffffff;
   border-radius: 5px;
-  padding: 10px;
+  padding: 8px;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  h1 {
-    font-size: 18px;
-    font-weight: 700;
-    text-align: center;
-    color: black;
-  }
+  align-items: center;
 `;
 const BoxHeader = styled.div`
   width: 100%;
@@ -89,30 +104,28 @@ const BoxHeader = styled.div`
   }
 `;
 const ProductBox = styled.div`
-  width: 300px;
-  height: 416px;
+  width: 150px;
+  height: 180px;
   border-radius: 9px;
-  margin-top: 25px;
   box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.7);
-  padding: 18px 14px 18px 14px;
+  padding: 9px 14px 18px 14px;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   img {
-    width: 200px;
+    width: 80px;
   }
 
   h1 {
-    font-size: 22px;
+    font-size: 14px;
     font-weight: 700;
+    margin-bottom: 10px;
   }
   h2 {
+    font-size: 13px;
     color: #5381f1;
-  }
-  p {
-    margin-bottom: 15px;
   }
 `;
 const ImgBox = styled.div`
@@ -142,3 +155,12 @@ const BoxFooter = styled.div`
     margin-left: 10px;
   }
 `;
+const ButtonLayer = styled.div`
+  
+  display: flex;
+  align-items: center;
+
+  h1{
+    margin: 15px;
+  }
+`
