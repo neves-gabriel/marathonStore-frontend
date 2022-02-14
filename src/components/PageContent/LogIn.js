@@ -47,7 +47,7 @@ export default function LogIn() {
           disabled={loading}
           type="email"
           name="email"
-          placeholder="email"
+          placeholder="E-mail"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
           required
@@ -56,7 +56,7 @@ export default function LogIn() {
           disabled={loading}
           type="password"
           name="password"
-          placeholder="senha"
+          placeholder="Senha"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
           minLength={6}
@@ -108,7 +108,6 @@ const GoTo = styled.p`
   margin-bottom: 22px;
   font-size: 14px;
   text-align: center;
-  text-decoration-line: underline;
   color: #5381f1;
   cursor: pointer;
 `;

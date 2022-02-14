@@ -14,6 +14,7 @@ export default function SideBar() {
   const { showLogIn } = useContext(AuthContext);
   const { showSignUp } = useContext(AuthContext);
   const { setSideBarTrigger } = useContext(AuthContext);
+  const { setURL } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -40,7 +41,6 @@ export default function SideBar() {
           {showSignUp ? <SignUp /> : null}
           <SideButton
             onClick={() => {
-              navigate(`/`);
               setSideBarTrigger(false);
             }}
           >
@@ -50,6 +50,7 @@ export default function SideBar() {
             onClick={() => {
               navigate(`/categorias/futebol`);
               setSideBarTrigger(false);
+              setURL("https://marathonstore-backend.herokuapp.com/products/Futebol");
             }}
           >
             Futebol
@@ -58,6 +59,7 @@ export default function SideBar() {
             onClick={() => {
               navigate(`/categorias/automobilismo`);
               setSideBarTrigger(false);
+              setURL("https://marathonstore-backend.herokuapp.com/products/Automobilismo");
             }}
           >
             Automobilismo
@@ -66,6 +68,7 @@ export default function SideBar() {
             onClick={() => {
               navigate(`/categorias/handebol`);
               setSideBarTrigger(false);
+              setURL("https://marathonstore-backend.herokuapp.com/products/Handebol");
             }}
           >
             Handebol
@@ -74,6 +77,7 @@ export default function SideBar() {
             onClick={() => {
               navigate(`/categorias/basquete`);
               setSideBarTrigger(false);
+              setURL("https://marathonstore-backend.herokuapp.com/products/Basquete");
             }}
           >
             Basquete
@@ -82,6 +86,7 @@ export default function SideBar() {
             onClick={() => {
               navigate(`/categorias/ciclismo`);
               setSideBarTrigger(false);
+              setURL("https://marathonstore-backend.herokuapp.com/products/Ciclismo");
             }}
           >
             Ciclismo
@@ -130,8 +135,8 @@ const SideButton = styled.div`
   width: 100%;
   height: 70px;
   background: #262626;
-  border: 1px solid #262626;
   border-radius: 5px;
+  border: 1px solid #262626;
   border-bottom: 1px solid black;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-left: 5px solid transparent;

@@ -18,7 +18,7 @@ const Container = styled.div`
   width: 100%;
   padding: 20px;
   position: fixed;
-  bottom: 0;
+  margin-top: 610px;
 
   display: flex;
   justify-content: flex-end;

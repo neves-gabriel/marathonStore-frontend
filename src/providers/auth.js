@@ -9,6 +9,8 @@ export const AuthProvider = ({ children }) => {
   const [userData, setUserData] = useState(null);
   const [showLogIn, setShowLogIn] = useState(true);
   const [showSignUp, setShowSignUp] = useState(false);
+  const [URL, setURL] = useState("");
+  const [cartInfo, setCartInfo] = useState([]);
 
   useEffect(() => {
     if (
@@ -41,6 +43,10 @@ export const AuthProvider = ({ children }) => {
         setShowLogIn,
         showSignUp,
         setShowSignUp,
+        URL,
+        setURL,
+        cartInfo,
+        setCartInfo,
       }}
     >
       {children}
