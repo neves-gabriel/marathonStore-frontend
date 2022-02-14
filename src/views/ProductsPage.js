@@ -35,7 +35,7 @@ export default function ProductsPage() {
                 <Header />
                 <ProductScroll>
                     {content.map((items) => (
-                        <ProductBox>
+                    <ProductBox key={items._id}>
                             <IconContext.Provider value={{ color: "#5381f1", size: "32px" }}>
                                 <AiOutlinePlusCircle
                                     onClick={() => setCartInfo([...cartInfo, items])}

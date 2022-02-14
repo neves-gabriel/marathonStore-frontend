@@ -18,9 +18,9 @@ export default function HomePage() {
       <Container triggered={sideBarTrigger || cartTrigger}>
         <Header />
         <SectionTitle title={"Destaques"} />
-        <ProductSection />
+        <ProductSection select={"highlights"}/>
         <SectionTitle title={"Lançamentos"} />
-        <ProductSection />
+        <ProductSection select={"releases"}/>
         <Footer />
       </Container>
       {sideBarTrigger === true && <SideBar />}

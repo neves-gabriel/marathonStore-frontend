@@ -27,7 +27,7 @@ export default function CartScreen() {
               {cartInfo !== [] &&
                 cartInfo.map((items) => (
                   <>
-                    <ProductBox>
+                    <ProductBox key={items._id}>
                       <ImgBox>
                         <img src={items.imgURL} />
                       </ImgBox>

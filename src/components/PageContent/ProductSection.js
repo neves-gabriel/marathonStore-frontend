@@ -8,7 +8,7 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
-export default function ProductSection() {
+export default function ProductSection({ select }) {
 
     const [released, setReleased] = useState([]);
     const [highlights, setHighlights] = useState([]);
@@ -17,7 +17,15 @@ export default function ProductSection() {
     const category = location.pathname.replace("/categorias/", "")
 
     useEffect(() => {
-        const promise = axios.get(`https://marathonstore-backend.herokuapp.com/products`);
+        const promise = axios.get(`https://marathonstore-backend.herokuapp.com/releases`);
+        promise.then((response) => {
+            setReleased(response.data);
+        });
+        promise.catch((error) => alert(error));
+    }, [category]);
+
+    useEffect(() => {
+        const promise = axios.get(`https://marathonstore-backend.herokuapp.com/highlights`);
         promise.then((response) => {
             setHighlights(response.data);
         });
@@ -25,10 +33,27 @@ export default function ProductSection() {
     }, [category]);
 
     return (
-        <Container>
+        select === "highlights" ?    <Container>
             <ProductScroll>
                 {highlights.map((items) => (
-                    <ProductBox>
+                    <ProductBox key={items._id}>
+                        <ImgBox>
+                            <img src={items.imgURL} />
+                        </ImgBox>
+                        <ProductInfo>
+                            <h1>{items.name}</h1>
+                            <h2>R${items.price}</h2>
+                        </ProductInfo>
+                    </ProductBox>
+                ))}
+            </ProductScroll>
+        </Container>
+        
+        : 
+        <Container>
+            <ProductScroll>
+                {released.map((items) => (
+                    <ProductBox key={items._id}>
                         <ImgBox>
                             <img src={items.imgURL} />
                         </ImgBox>
@@ -48,13 +73,6 @@ const Container = styled.div`
     background-color: #FFF;
     display: flex;
     position:  relative;
-
-    h1{
-        font-size: 26px;
-        font-weight: 700;
-        color: #E5E5E5;
-        margin-left: 10px;
-    }
 `
 const ProductScroll = styled.div`
     min-width: 100;
@@ -75,24 +93,26 @@ const ProductBox = styled.div`
     
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 `
 const ProductInfo = styled.div`
-    h1 {
-        font-size: 10px;
+    height: 70px;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    h1 {
+        font-size: 11px;
+        font-weight: 700;
     }
     h2 {
-        font-size: 10px;
-
-    }
-    p {
-        font-size: 10px;
-
+        font-size: 16px;
+        color: #5381f1;
     }
 `;
 const ImgBox = styled.div`
   width: 100%;
+  margin-bottom: 32px;
 
   display: flex;
   justify-content: center;    

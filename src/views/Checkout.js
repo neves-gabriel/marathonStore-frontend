@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { AuthContext } from "../providers/auth";
 import { useContext } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import { IconContext } from "react-icons";
 import { AiOutlinePlusCircle } from "react-icons/ai";
@@ -15,11 +17,20 @@ import CartScreen from "../components/PageContent/CartScreen";
 
 export default function Checkout() {
 
+    const { userData } = React.useContext(AuthContext);
+    const navigate = useNavigate();
     const { sideBarTrigger } = React.useContext(AuthContext);
     const { cartTrigger } = React.useContext(AuthContext);
     const { cartInfo, setCartInfo } = React.useContext(AuthContext);
     const { URL } = useContext(AuthContext);
     const [content, setContent] = useState([]);
+    const [finishOrder, setFinishOrder] = useState(
+        {
+            products: {},
+            value: "",
+            payment: {},
+        }
+    );
 
     const initialValue = {
         cardName: "",
@@ -34,7 +45,31 @@ export default function Checkout() {
 
         setInput({ ...input, [name]: value });
     }
-console.log(input);
+
+    function onSubmit(ev) {
+        ev.preventDefault();
+
+        finishOrder.products = cartInfo;
+        finishOrder.payment = input;
+        finishOrder.value = cartInfo.reduce((acc, item) => (
+
+            acc += parseFloat(item.price.replace(",", "."))
+        ), 0);
+
+        const promise = axios.post("https://marathonstore-backend.herokuapp.com/order", finishOrder,
+            {
+                headers: {
+                    "Authorization": `Bearer ${userData.token}`
+                }
+            }
+        );
+        promise.then((response) => {
+            navigate("/"); 
+        } );
+        promise.catch(error => alert(error));
+    }
+    console.log(finishOrder);
+
     return (
         <>
             <Container triggered={sideBarTrigger || cartTrigger}>
@@ -45,7 +80,7 @@ console.log(input);
                         {cartInfo !== [] &&
                             cartInfo.map((items) => (
                                 <>
-                                    <ProductBox>
+                                    <ProductBox key={items._id}>
                                         <ImgBox>
                                             <img src={items.imgURL} />
                                         </ImgBox>
@@ -58,16 +93,17 @@ console.log(input);
                             ))}
                     </ProductScroll>
                 </OrderSection>
-                <CardInfo>
-                    <Input placeholder="Nome impresso no cartão" type="text" name="cardName" onChange={onChange} />
-                    <Input placeholder="Digitos do cartão" type="text" name="cardNumber" onChange={onChange} />
-                    <CardSecurity>
-                        <Input placeholder="Código de segurança" type="text" name="securityNumber" onChange={onChange} />
-                        <Input placeholder="Validade" type="text" name="expirationDate" onChange={onChange} />
-                    </CardSecurity>
-                    <Button >Finalizar compra</Button>
-                </CardInfo>
-
+                <Form onSubmit={onSubmit}>
+                    <CardInfo>
+                        <Input placeholder="Nome impresso no cartão" type="text" name="cardName" onChange={onChange} />
+                        <Input placeholder="Digitos do cartão" type="text" name="cardNumber" onChange={onChange} />
+                        <CardSecurity>
+                            <Input placeholder="Código de segurança" type="text" name="securityNumber" onChange={onChange} />
+                            <Input placeholder="Validade" type="text" name="expirationDate" onChange={onChange} />
+                        </CardSecurity>
+                        <Button onClick={() => onSubmit()}>Finalizar compra</Button>
+                    </CardInfo>
+                </Form>
                 <Footer />
             </Container>
             {sideBarTrigger === true && <SideBar />}
@@ -167,4 +203,9 @@ const ImgBox = styled.div`
   justify-content: center;
 `;
 const ProductInfo = styled.div``;
+const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
 
