@@ -51,8 +51,8 @@ export default function ProductsPage() {
                         </ProductBox>
                     ))}
                 </ProductScroll>
-                <Footer />
             </Container>
+            <Footer />
             {sideBarTrigger === true && <SideBar />}
             {cartTrigger === true && <CartScreen />}
         </>
@@ -69,8 +69,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: ${(props) => (props.triggered ? "fixed" : "")};
-  z-index: 2;
   overflow-y: scroll;
 `;
 const ProductScroll = styled.div``;

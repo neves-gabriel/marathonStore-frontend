@@ -46,7 +46,6 @@ export default function CartScreen() {
                       onClick={() => setCount(count + 1)}
                     />
                   </IconContext.Provider>
-
                 </ButtonLayer>
               </>
             ))}
@@ -63,12 +62,15 @@ const Container = styled.div`
   width: 100vw;
   min-height: 100vh;
   padding: 25px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: fixed;
   z-index: 4;
+  top: 0;
+  left: 0;
 `;
 const CartBox = styled.div`
   width: 330px;
@@ -76,6 +78,8 @@ const CartBox = styled.div`
   background-color: #ffffff;
   border-radius: 5px;
   padding: 8px;
+  overflow-y: scroll;
+
 
   display: flex;
   flex-direction: column;
@@ -93,6 +97,7 @@ const BoxHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
 
   h1 {
     font-family: "Montserrat", sans-serif;

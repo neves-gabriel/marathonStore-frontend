@@ -17,8 +17,8 @@ export default function Footer() {
 const Container = styled.div`
   width: 100%;
   padding: 20px;
-  position: absolute;
-  margin-top: 400px;
+  position: fixed;
+  bottom: 0;
 
   display: flex;
   justify-content: flex-end;

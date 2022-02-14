@@ -103,6 +103,8 @@ const Container = styled.div`
 
   display: flex;
   position: fixed;
+  top: 0;
+  left: 0;
   z-index: 3;
 `;
 const Content = styled.div`
